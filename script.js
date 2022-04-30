@@ -1,64 +1,87 @@
+const button = document.querySelectorAll('button'); 
+const roundResults = document.querySelector('.result');
+const playerPoints = document.querySelector('#playerScore');
+const compPoints = document.querySelector('#computerScore');
+button.forEach(button => {
+    button.addEventListener('click', getPlayerChoice) });
+
+let comp_points = 0;
+let player_points = 0;
+let options= ['rock','paper',"scissors"];
+function getPlayerChoice(e){
+    let playerSelection= (e.target.textContent);
+    let result= playRound(playerSelection, computerPlay());
+    if (result.slice(0,7) == 'You Win'){
+        playerPoints.textContent = ++player_points;
+    }
+    else{
+        if (result.slice(0,8) == 'You Lose'){
+            compPoints.textContent = ++comp_points;
+        }
+    }
+    console.log(player_points);
+    playRound(playerSelection, computerPlay());
+    if (comp_points == 5){
+        roundResults.textContent = ("Nice Try, but You Lost to a Computer!");
+        comp_points = 0;
+        player_points = 0;
+        compPoints.textContent = 0;
+        playerPoints.textContent = 0;
+    }
+    if (player_points == 5){
+        roundResults.textContent = ("Nice! You Beat a Computer!");
+        player_points = 0;
+        comp_points = 0;
+        compPoints.textContent = 0;
+        playerPoints.textContent = 0;
+    }
+}
 
 function computerPlay(){
-    let options= ['rock','paper',"scissors"];
-    let choose= Math.floor(Math.random() * 3); /*Chooses a random number from 0-2*/
-    return options[choose]; /*Selection from options list*/
+    return options[Math.floor(Math.random() * 3)]; /*Selection from options list*/
 }
 
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase();
-
+    
     if (playerSelection == 'rock' && computerSelection == 'rock'){
-        return ("Tie Game!");
+        roundResults.textContent = ("Tie Game!");
+        return roundResults.textContent;
     }
     if (playerSelection == 'paper' && computerSelection == 'paper'){
-        return ("Tie Game!");
+        roundResults.textContent = ("Tie Game!");
+        return roundResults.textContent;
     }
     if (playerSelection == 'scissors' && computerSelection == 'scissors'){
-        return ("Tie Game!");
+        roundResults.textContent = ("Tie Game!");
+        return roundResults.textContent;
     }
     if (playerSelection == 'rock' && computerSelection == 'paper'){
-        return ("You Lose! Paper beats Rock");
+        roundResults.textContent = ("You Lose! Paper beats Rock");
+        return roundResults.textContent;
     }
     if (playerSelection == 'paper' && computerSelection == 'scissors'){
-        return ("You Lose! Scissors beats Paper");
+        roundResults.textContent = ("You Lose! Scissors beats Paper");
+        return roundResults.textContent;
     }
     if (playerSelection == 'scissors' && computerSelection == 'rock'){
-        return ("You Lose! Rock beats Scissors");
+        roundResults.textContent = ("You Lose! Rock beats Scissors");
+        return roundResults.textContent;
     }
     if (playerSelection == 'paper' && computerSelection == 'rock'){
-        return ("You Win! Paper beats Rock");
+        roundResults.textContent = ("You Win! Paper beats Rock");
+        return roundResults.textContent;
     }
     if (playerSelection == 'scissors' && computerSelection == 'paper'){
-        return ("You Win! Scissors beats Paper");
+        roundResults.textContent = ("You Win! Scissors beats Paper");
+        return roundResults.textContent;
     }
     if (playerSelection == 'rock' && computerSelection == 'scissors'){
-        return ("You Win! Rock beats Scissors");
+        roundResults.textContent = ("You Win! Rock beats Scissors");
+        return roundResults.textContent;
     }
 }
 
-function game(){
-    let comp_points = 0;
-    let player_points = 0;
-    while (comp_points<5 && player_points<5){
-        let playerSelection = prompt('Rock, Paper, or Scissors?');
-        let computerSelection = computerPlay();
-        let result = playRound(playerSelection, computerSelection);
-        if (result.slice(0,7) == 'You Win'){
-            player_points += 1
-        }
-        else{
-            if (result.slice(0,8) == 'You Lose'){
-                comp_points += 1;
-            }
-        }
-    }
-    if (comp_points == 5){
-        return ("Nice Try, but You Lost to a Computer!");
-    }
-    if (player_points == 5){
-        return ("Nice! You Beat a Computer!");
-    }
-}
 
-console.log(game());
+
+
